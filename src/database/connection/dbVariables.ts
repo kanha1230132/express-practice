@@ -18,4 +18,5 @@ export enum userTable {
   deleted = "deleted",
   deleteBy = "deleteBy",
   createdAt = "createdAt",
+  password = "password",
 }

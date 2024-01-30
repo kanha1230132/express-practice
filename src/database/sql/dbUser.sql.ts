@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS ${tablesName.userTable}(
     ${userTable.lastName} VARCHAR(255) DEFAULT NULL,
     ${userTable.email} VARCHAR(255) DEFAULT NULL,
     ${userTable.imageURL} VARCHAR(255) DEFAULT NULL,
+    ${userTable.password} VARCHAR(255) NOT NULL DEFAULT "",
     ${userTable.createdBy} BIGINT UNSIGNED DEFAULT NULL,
     ${userTable.deleted} BOOLEAN NOT NULL DEFAULT 0,
     ${userTable.deleteBy} BIGINT UNSIGNED DEFAULT NULL,
@@ -27,6 +28,8 @@ export const UserInsertQuery = `
     (${userTable.firstName}, 
     ${userTable.lastName}, 
     ${userTable.email}, 
-    ${userTable.createdBy})
-    VALUES ?;
+    ${userTable.imageURL}, 
+    ${userTable.createdBy}, 
+    ${userTable.password})
+    VALUES VALUES(?, ?, ?, ?, ?, ?);
 `;

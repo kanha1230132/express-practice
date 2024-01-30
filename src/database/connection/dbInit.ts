@@ -1,21 +1,17 @@
 import mysql, { PoolOptions } from "mysql2";
-import { logMsg } from "../../helper/util";
+import { configHelper } from "../../helper/config";
 
 const access = {
-  host: "localhost",
-  user: "root",
-  password: "reactnode@123",
-  multipleStatements: true,
+  host: configHelper.MYSQL_HOST,
+  user: configHelper.MYSQL_USER,
+  password: configHelper.MYSQL_PASSWORD,
+  multipleStatements: configHelper.MYSQL_MUTIPLE_STATEMENTS,
 };
 
-const conn = mysql.createPool(access).promise();
+export const conn = mysql.createPool(access);
 
 export const connectionDb = async (query: string) => {
-  let isConnect = await conn.query(query);
+  let isConnect = conn.query(query);
   return isConnect;
 };
 
-// con.query(sql, [values], function (err, result) {
-//     if (err) throw err;
-//     console.log("Number of records inserted: " + result.affectedRows);
-//   });

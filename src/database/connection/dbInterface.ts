@@ -11,4 +11,5 @@ export default interface UserType {
   deleteBy: number | null;
   createdAt: Date | null;
   userId: number;
+  password : string
 }
