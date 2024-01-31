@@ -33,3 +33,12 @@ export const UserInsertQuery = `
     ${userTable.password})
     VALUES VALUES(?, ?, ?, ?, ?, ?);
 `;
+
+/**
+ * get User Query
+ */
+
+export const getUserQuery = `
+  SELECT userId, firstName, lastName, email, imageURL, createdAt, createdBy, deleted, deleteBy, userType 
+  FROM  USER_TABLE WHERE deleted != 1 and (email = ? or userId = ?)`;
+;

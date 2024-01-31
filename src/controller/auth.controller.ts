@@ -1,11 +1,12 @@
 import { Request, Response } from "express";
 import { registerValidation } from "../helper/validation";
 import { HTTPResponse, HttpStatus } from "../httpResponse";
+import userQuery from "../database/query/user.query";
 
 /**
  * Registration controller.
  */
-export const Register = (req: Request, res: Response) => {
+export const Register = async (req: Request, res: Response) => {
   const body = req.body;
   const { error } = registerValidation.validate(body);
   if (error) {
@@ -20,6 +21,6 @@ export const Register = (req: Request, res: Response) => {
     );
   }
 
-  // const data = await UserQuery.save(saveData)
-  res.send(new HTTPResponse({statusCode: HttpStatus.OK.code, httpStatus: HttpStatus.OK.status, message: "User created"}));
+  const data = await userQuery.save(body);
+  res.send(new HTTPResponse({statusCode: HttpStatus.OK.code, httpStatus: HttpStatus.OK.status, message: "User created", data }));
 };
